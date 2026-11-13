@@ -1,0 +1,135 @@
+[
+  {
+    "slug": "rdc",
+    "label": "Rez-de-chaussée",
+    "kind": "Local commercial",
+    "surface": "95,8 m²",
+    "price": "3 500 € HT/HC / mois",
+    "photos": [
+      "/assets/rdc-devanture-couverture-v3.png",
+      "/assets/rdc-01.webp",
+      "/assets/rdc-02.webp",
+      "/assets/rdc-03.webp",
+      "/assets/rdc-04-cloison-simulation.webp",
+      "/assets/rdc-05.webp",
+      "/assets/rdc-06-redressee.webp",
+      "/assets/rdc-07.webp",
+      "/assets/rdc-08-cloison-simulation.webp",
+      "/assets/rdc-devanture-facade-v4.png"
+    ],
+    "subtitle": "Un espace commercial sur rue",
+    "facts": [
+      "Rez-de-chaussée",
+      "Façade vitrée",
+      "Accès direct sur rue"
+    ],
+    "body": "<p>Au cœur de la Presqu’île lyonnaise, entre Bellecour et Ampère, local commercial de 95,8 m² en rez-de-chaussée, avec façade vitrée et accès direct depuis la rue Victor-Hugo.</p><p>Anciennement occupés par une agence bancaire, les locaux comprennent un espace d’accueil côté rue, plusieurs espaces cloisonnés et des rangements intégrés.</p><p>Les cloisons vitrées permettent de conserver une communication visuelle entre les différents espaces. Des éléments en pierre apparente apportent du caractère à l’ensemble.</p><p>Le local peut notamment convenir à une activité commerciale, une société de services, une agence ou des professions libérales, sous réserve des autorisations nécessaires.</p><h2>État et aménagements</h2><p>Des travaux de remise en état et des adaptations sont à prévoir selon l’activité envisagée. Leurs modalités seront à préciser avec le futur locataire.</p>",
+    "terms": [
+      "Loyer : 3 500 € HT/HC par mois, soit 42 000 € HT/HC par an",
+      "Charges, fiscalité applicable, dépôt de garantie et conditions du bail : à préciser",
+      "Disponibilité : à confirmer"
+    ]
+  },
+  {
+    "slug": "etage-1",
+    "label": "1er étage",
+    "kind": "Bureaux",
+    "surface": "112,20 m²",
+    "price": "De 2 100 à 2 500 € HT/HC / mois, selon les travaux convenus",
+    "photos": [
+      "/assets/etage1-01.webp",
+      "/assets/etage1-02.webp",
+      "/assets/etage1-03.webp",
+      "/assets/etage1-04.webp",
+      "/assets/etage1-05.webp",
+      "/assets/etage1-06.webp",
+      "/assets/etage1-07.webp",
+      "/assets/etage1-sanitaires-eclaires.png"
+    ],
+    "subtitle": "Des bureaux au cœur de la Presqu’île",
+    "facts": [
+      "1er étage · entresol",
+      "Accès indépendant",
+      "Sans ascenseur"
+    ],
+    "plan": "/assets/plan-1er.webp",
+    "body": "<p>Au cœur de la Presqu’île lyonnaise, rue Victor-Hugo, entre la place Bellecour et la place Ampère, ensemble de bureaux de 112,20 m², situé au premier étage (entresol) d’un immeuble de caractère.</p><p>Les locaux comprennent plusieurs espaces de travail, dont deux bureaux communicants donnant sur la rue Victor-Hugo et un grand espace sur cour.</p><h2>Équipements</h2><ul><li>Deux espaces de rangement.</li><li>Un coin kitchenette avec évier et emplacement pour réfrigérateur.</li><li>Deux sanitaires indépendants (hommes et femmes), avec espace lavabo.</li><li>Une installation de climatisation existante, en cours de réaménagement.</li></ul><p>Les bureaux bénéficient de belles fenêtres et d’une bonne luminosité naturelle. Accès indépendant par l’escalier commun de l’immeuble. Étage non desservi par ascenseur.</p><p>Ces locaux peuvent notamment convenir à une société de services, un cabinet de conseil, une activité administrative ou des professions libérales, sous réserve des autorisations nécessaires.</p><h2>Aménagements</h2><p>Certains aménagements techniques sont en cours d’achèvement. Les locaux sont proposés dans leur état actuel, avec possibilité d’étudier des adaptations selon les besoins du futur locataire.</p><p>Des simulations d’aménagement avant/après accompagnent les photographies afin d’illustrer le potentiel des espaces. Ces simulations sont présentées à titre indicatif et non contractuel.</p>",
+    "terms": [
+      "Loyer : 2 500 € HT/HC par mois, soit 30 000 € HT/HC par an",
+      "Charges, fiscalité applicable, dépôt de garantie et conditions du bail à préciser",
+      "Location de l’ensemble des 112,20 m² uniquement"
+    ]
+  },
+  {
+    "slug": "etage-4",
+    "label": "4e étage",
+    "kind": "Appartement T3 rénové",
+    "surface": "58 m²",
+    "price": "1 150 € / mois",
+    "photos": [
+      "/assets/etage4-fichier03-valide.webp",
+      "/assets/etage4-02-perspective-validee.webp",
+      "/assets/etage4-03-perspective-validee.webp",
+      "/assets/etage4-fichier05-valide.webp",
+      "/assets/etage4-05.webp",
+      "/assets/etage4-06-perspective-validee.webp",
+      "/assets/etage4-07-perspective-validee.webp",
+      "/assets/etage4-08.webp",
+      "/assets/etage4-09-perspective-validee.webp",
+      "/assets/etage4-10-perspective-validee.webp",
+      "/assets/etage4-cour.webp",
+      "/assets/etage4-alcove-photo13-validee.webp",
+      "/assets/etage4-fichier12-valide.webp",
+      "/assets/etage4-photo-14-perspective-v1.webp",
+      "/assets/etage5-ajout-4.webp"
+    ],
+    "subtitle": "Le caractère de l’ancien",
+    "facts": [
+      "4e étage avec ascenseur",
+      "3 pièces",
+      "Chaudière individuelle au gaz neuve",
+      "DPE C"
+    ],
+    "body": "<p>Au cœur de la Presqu’île lyonnaise, entre Bellecour et Ampère, appartement T3 rénové de 58 m² donnant sur cour, situé au 4e étage avec ascenseur d’un immeuble de caractère, dans une rue piétonne.</p><p>Le logement a bénéficié de travaux de rénovation portant sur les menuiseries extérieures, la plâtrerie et les peintures, l’électricité, la ventilation et la plomberie. Il dispose d’une <strong>chaudière individuelle au gaz neuve</strong>.</p><p>Le logement conserve des éléments anciens : parquet en chevrons, cheminée décorative, boiseries et rangements intégrés.</p><p>Il dispose d’un espace cuisine avec meubles de rangement, évier et plaques de cuisson, ainsi que d’une salle de bains avec baignoire et de WC séparés.</p><p>Isolation thermique renforcée sur murs extérieurs.</p>",
+    "terms": [
+      "Loyer mensuel : 1 100 €",
+      "Charges, dépôt de garantie et disponibilité : à préciser",
+      "DPE : C"
+    ]
+  },
+  {
+    "slug": "etage-5",
+    "label": "5e étage",
+    "kind": "Appartement T3 rénové",
+    "surface": "57 m²",
+    "price": "1 100 € / mois",
+    "photos": [
+      "/assets/etage5-salon-v2.webp",
+      "/assets/etage5-03-redressee-v1.webp",
+      "/assets/etage5-04-redressee-v1.webp",
+      "/assets/etage5-05-redressee-v1.webp",
+      "/assets/etage5-06-redressee-v1.webp",
+      "/assets/etage5-07-redressee-v1.webp",
+      "/assets/etage5-08-redressee-v1.webp",
+      "/assets/etage5-cuisine-complete-v2.webp",
+      "/assets/etage5-10-redressee-v1.webp",
+      "/assets/etage5-11.webp",
+      "/assets/etage5-12.webp",
+      "/assets/etage5-ajout-3-redressee-v1.webp"
+    ],
+    "subtitle": "Un appartement rénové avec ascenseur",
+    "facts": [
+      "5e étage avec ascenseur",
+      "3 pièces · 2 chambres",
+      "Chauffage électrique"
+    ],
+    "body": "<p>Au cœur de la Presqu’île lyonnaise, rue Victor-Hugo, à proximité immédiate des commerces, des transports et de la place Bellecour, appartement T3 d’environ 57 m² donnant sur la rue Victor-Hugo, situé au 5e étage d’un immeuble avec ascenseur.</p><h2>Un appartement entièrement rénové</h2><ul><li>Isolation thermique renforcée sur murs extérieurs.</li><li>Radiateurs électriques Atlantic Accessio à chaleur douce.</li><li>Installation d’une ventilation mécanique (VMC).</li><li>Installation électrique rénovée.</li><li>Travaux de réfection des murs, plafonds et aménagements intérieurs.</li></ul><h2>Agencement et équipements</h2><p>L’appartement dispose de trois pièces, dont deux chambres, et d’une salle d’eau.</p><p>Cuisine équipée : plaque de cuisson à induction, four et réfrigérateur neufs. Une machine à laver neuve complète les équipements.</p>",
+    "terms": [
+      "Surface : environ 57 m²",
+      "Loyer mensuel : 1 100 €",
+      "Charges : à préciser",
+      "DPE : en cours d’actualisation",
+      "Disponibilité : à confirmer"
+    ]
+  }
+]
