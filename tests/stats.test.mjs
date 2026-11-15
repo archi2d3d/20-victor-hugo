@@ -1,0 +1,23 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import vm from 'node:vm';
+import { readFile } from 'node:fs/promises';
+import * as crypto from 'node:crypto';
+let writes=[];
+const sandbox=vm.createContext({Response,URL,Buffer,Date,Netlify:{env:{get:k=>({VH_STATS_KEY:'test-signing-key',VH_STATS_PASSWORD:'test-password'}[k])}}});
+const module=new vm.SourceTextModule(await readFile(new URL('../netlify/functions/stats.mjs',import.meta.url),'utf8'),{context:sandbox});
+await module.link(async name=>{
+ const values=name==='node:crypto'?crypto:{getDatabase:()=>({sql:async(strings,...args)=>{writes.push({sql:strings.join('?'),args});return []}})};
+ const exports=Object.keys(values);const m=new vm.SyntheticModule(exports,function(){for(const k of exports)this.setExport(k,values[k])},{context:sandbox});return m;
+});await module.evaluate();const handler=module.namespace.default;
+const origin='https://20-victor-hugo.netlify.app';
+const request=(action,body,extra={})=>new Request(origin+'/.netlify/functions/stats?action='+action,{method:body?'POST':'GET',headers:{origin,'Content-Type':'application/json',...extra},body:body?JSON.stringify(body):undefined});
+const context={deploy:{context:'production'},geo:{city:'Lyon',country:{name:'France'}}};
+let auth;
+test('Private report requires authentication',async()=>{assert.equal((await handler(request('report'),context)).status,401)});
+test('Wrong password and foreign origin rejected',async()=>{assert.equal((await handler(request('login',{password:'wrong'}),context)).status,401);assert.equal((await handler(request('login',{password:'test-password'},{origin:'https://evil.test'}),context)).status,403)});
+test('Login creates secure signed cookie',async()=>{const r=await handler(request('login',{password:'test-password'}),context);assert.equal(r.status,200);auth=r.headers.get('set-cookie');assert.match(auth,/HttpOnly; Secure; SameSite=Strict/)});
+const event=()=>({id:crypto.randomUUID(),visitor:crypto.randomUUID(),session:crypto.randomUUID(),page:'/rdc/',consent:true,source:'prospection',medium:'email',campaign:'enseignes'});
+test('Consent required, path and UUID validated',async()=>{for(const patch of [{consent:false},{page:'/private/'},{visitor:'invalid'}])assert.equal((await handler(request('collect',{...event(),...patch}),context)).status,400)});
+test('Valid pageview stores hashed IDs and coarse geo, never IP',async()=>{writes=[];const b=event();const r=await handler(request('collect',b),{...context,ip:'1.2.3.4'});assert.equal(r.status,200);assert.equal(writes.length,1);assert.equal(writes[0].args[4],'Email · prospection');assert.equal(writes[0].args[6],'France');assert.equal(writes[0].args[7],'Lyon');assert.ok(!writes[0].args.includes(b.visitor));assert.ok(!JSON.stringify(writes).includes('1.2.3.4'))});
+test('Owner, excluded browsers, bots and previews are ignored',async()=>{writes=[];await handler(request('collect',event(),{cookie:'vh_exclude=1'}),context);await handler(request('collect',event(),{cookie:auth}),context);await handler(request('collect',event(),{'user-agent':'Googlebot'}),context);await handler(request('collect',event()),{...context,deploy:{context:'deploy-preview'}});assert.equal(writes.length,0)});
