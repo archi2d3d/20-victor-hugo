@@ -12,3 +12,6 @@
 
 /* Contact : messagerie habituelle et raccourci Gmail. */
 .contact-details{display:flex;align-items:center;flex-wrap:wrap;gap:16px;margin:32px 0 40px}.contact-details>a{color:#c47e52;font-size:18px}.gmail-link{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;border:1px solid #ddd5cc;border-radius:6px}.gmail-link:hover{background:#f0ede7}.gmail-link:focus-visible{outline:2px solid #c47e52;outline-offset:3px}
+
+/* À propos : texte et carte de localisation. */
+.about-page{max-width:none;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:56px;align-items:center}.about-copy{min-width:0}.about-map{margin:0;min-width:0}.about-map a{display:block;border-radius:8px;overflow:hidden}.about-map img{display:block;width:100%;height:auto}.about-map figcaption{margin-top:12px;font-size:13px;color:#777a72}@media(max-width:900px){.about-page{grid-template-columns:1fr;gap:36px}.about-map{width:100%}}
