@@ -1,0 +1,27 @@
+{
+  "name": "vh-analytics",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gallery.js",
+  "scripts": {
+    "build": "node build-site.mjs",
+    "test": "node --experimental-vm-modules --test tests/stats.test.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/archi2d3d/20-victor-hugo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/archi2d3d/20-victor-hugo/issues"
+  },
+  "homepage": "https://github.com/archi2d3d/20-victor-hugo#readme",
+  "dependencies": {
+    "@netlify/database": "^2.0.3",
+    "@netlify/functions": "^6.1.1"
+  },
+  "private": true
+}
