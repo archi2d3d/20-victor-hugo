@@ -1,5 +1,6 @@
 import { getDatabase } from '@netlify/database';
-import { createHmac, timingSafeEqual } from 'node:crypto';
+import { openAudienceStore } from '../lib/audience-blobs.mjs';
+import { createHmac, timingSafeEqual, randomUUID } from 'node:crypto';
 const pages=new Set(['/','/rdc/','/etage-1/','/etage-4/','/etage-5/','/a-propos/','/contact/']);
 const headers={'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Content-Type':'application/json'};
 const reply=(data,status=200,extra={})=>new Response(JSON.stringify(data),{status,headers:{...headers,...extra}});
@@ -12,6 +13,9 @@ const safe=v=>typeof v==='string'?v.replace(/[\x00-\x1f]/g,'').slice(0,100):'';
 export default async(req,context)=>{
  if(!key()||!Netlify.env.get('VH_STATS_PASSWORD'))return reply({error:'Statistiques non configurées'},503);
  const url=new URL(req.url),action=url.searchParams.get('action')||'report';
+ // Emergency switch also prevents the scheduled cleanup from waking PostgreSQL.
+ if(Netlify.env.get('VH_STATS_PAUSED')==='1' && !['login','logout'].includes(action))return reply({error:'Statistiques temporairement suspendues'},503);
+ const useBlobs=Netlify.env.get('VH_STATS_STORAGE')==='blobs';
  if(req.method==='POST'&&action!=='collect'&&req.headers.get('origin')!==url.origin)return reply({error:'Origine refusée'},403);
  if(action==='login'&&req.method==='POST'){
   const b=await req.json().catch(()=>({}));
@@ -39,6 +43,11 @@ export default async(req,context)=>{
   const city=safe(b.city);
   const geo=city?country+' · '+city:'';
   
+  if(useBlobs){
+   const storage=await openAudienceStore(context,key());
+   await storage.collect({day,visitor,session,page:b.page,source,country,geo,eventId:typeof b.id==='string'&&/^[0-9a-f-]{36}$/i.test(b.id)?b.id:randomUUID()});
+   return reply({ok:true});
+  }
   // Atomic aggregates, without event history or links between dimensions.
   await getDatabase().sql`
    WITH v AS (INSERT INTO vh_audience_seen(day,kind,token) VALUES (${day},'visitor',${visitor}) ON CONFLICT DO NOTHING RETURNING 1),
@@ -57,6 +66,10 @@ export default async(req,context)=>{
  if(action!=='report'||req.method!=='GET')return reply({},405);
  const days=[1,7,30,90].includes(Number(url.searchParams.get('days')))?Number(url.searchParams.get('days')):30;
  const since=new Intl.DateTimeFormat('en-CA',{timeZone:'Europe/Paris',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(Date.now()-(days-1)*86400000));
+ if(useBlobs){
+  try{return reply(await (await openAudienceStore(context,key())).report(days,since));}
+  catch{ return reply({error:'Statistiques indisponibles : migration à vérifier'},503); }
+ }
  const rows=await getDatabase().sql`SELECT dimension,label,sum(count)::bigint AS count,max(count)::bigint AS maximum FROM vh_audience_counts WHERE day>=${since} GROUP BY dimension,label`;
  const count=n=>Number(n);
  const selected=d=>rows.filter(r=>r.dimension===d);

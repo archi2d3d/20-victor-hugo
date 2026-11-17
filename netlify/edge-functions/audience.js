@@ -4,6 +4,7 @@ async function digest(secret,value){const key=await crypto.subtle.importKey('raw
 function network(ip){if(/^\d+\.\d+\.\d+\.\d+$/.test(ip))return ip.split('.').slice(0,3).join('.')+'.0';if(ip.includes(':')){const [left,right='']=ip.split('::'),a=left?left.split(':'):[],b=right?right.split(':'):[];return [...a,...Array(Math.max(0,8-a.length-b.length)).fill('0'),...b].slice(0,3).map(x=>parseInt(x||'0',16).toString(16)).join(':')+'::'}return ''}
 export default async(request,context)=>{
  const response=await context.next();
+ if(Netlify.env.get('VH_STATS_PAUSED')==='1')return response;
  try{
   if(context.deploy?.context!=='production'||request.method!=='GET'||response.status!==200||!response.headers.get('content-type')?.includes('text/html'))return response;
   const cookies=request.headers.get('cookie')||'';
@@ -18,7 +19,7 @@ export default async(request,context)=>{
   const identity=prefix?await digest(secret,'network:'+origin.hostname+':'+day+':'+prefix+':'+family):crypto.randomUUID();
   const visitor=identity,session=await digest(secret,'window:'+origin.hostname+':'+identity+':'+Math.floor(now/1800000));
   let referrerHost='';try{referrerHost=new URL(request.headers.get('referer')||'').hostname}catch{}
-  const body=JSON.stringify({time:now,page:new URL(request.url).pathname,visitor,session,referrerHost,country:context.geo?.country?.name||'',city:context.geo?.city||''});
+  const body=JSON.stringify({id:crypto.randomUUID(),time:now,page:new URL(request.url).pathname,visitor,session,referrerHost,country:context.geo?.country?.name||'',city:context.geo?.city||''});
   const signature=await digest(secret,'edge:'+body);
   const target=new URL('/.netlify/functions/stats?action=collect',origin);target.protocol='https:';
   context.waitUntil(fetch(target,{method:'POST',headers:{'content-type':'application/json','x-vh-signature':signature},body}).then(r=>{if(!r.ok)console.warn('Audience collector status',r.status)}).catch(()=>console.warn('Audience collector unavailable')));

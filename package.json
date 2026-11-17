@@ -5,7 +5,8 @@
   "main": "gallery.js",
   "scripts": {
     "build": "node build-site.mjs",
-    "test": "node --experimental-vm-modules --test tests/stats.test.mjs"
+    "check:functions": "esbuild netlify/functions/stats.mjs netlify/functions/stats-cleanup.mjs --bundle --platform=node --format=esm --outdir=.netlify/check-functions",
+    "test": "node --experimental-vm-modules --test tests/*.test.mjs"
   },
   "repository": {
     "type": "git",
@@ -20,8 +21,13 @@
   },
   "homepage": "https://github.com/archi2d3d/20-victor-hugo#readme",
   "dependencies": {
+    "@netlify/blobs": "^11.1.9",
     "@netlify/database": "^2.0.3",
     "@netlify/functions": "^6.1.1"
   },
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "pg": "^8.23.1"
+  }
 }
